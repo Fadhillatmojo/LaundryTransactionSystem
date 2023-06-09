@@ -46,8 +46,10 @@ public class HomepageOwner extends JFrame{
         buttonLaporanKeuangan.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("laporan keuangan button was clicked");
+//                System.out.println("laporan keuangan button was clicked");
+                redirectToLaporanTransaksiPage();
             }
+
         });
         buttonLihatTransaksi.addActionListener(new ActionListener() {
             @Override
@@ -99,5 +101,10 @@ public class HomepageOwner extends JFrame{
     public void redirectToUpdateTransaksiPage(){
         // direct to update transaksi page
         UpdateTransaksiPage updateTransaksiPage = new UpdateTransaksiPage("Update Transaksi");
+    }
+
+    public void redirectToLaporanTransaksiPage(){
+        // direct to laporan transaksi page
+        LaporanTransaksiPage laporanTransaksiPage = new LaporanTransaksiPage("Laporan Transaksi");
     }
 }
