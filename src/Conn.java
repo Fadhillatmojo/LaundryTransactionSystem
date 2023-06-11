@@ -204,4 +204,36 @@ public class Conn {
         }
     }
 
+    // method mengambil jumlah transaksi 1 minggu terakhir
+    public static int totalPemasukanMingguan(){
+        String storedProcedure = "{ CALL calculateTotalPenjualanMingguan() }";
+        try {
+            CallableStatement statement = getCon().prepareCall(storedProcedure);
+            ResultSet hasilSet = statement.executeQuery();
+            if (hasilSet.next()) {
+                int transaksiMingguan = hasilSet.getInt(1);
+                return transaksiMingguan;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    // method mengambil jumlah transaksi 1 bulan terakhir
+    public static int totalPemasukanBulanan(){
+        String storedProcedure = "{ CALL calculateTotalPenjualanBulanan() }";
+        try {
+            CallableStatement statement = getCon().prepareCall(storedProcedure);
+            ResultSet hasilSet = statement.executeQuery();
+            if (hasilSet.next()) {
+                int transaksiBulanan = hasilSet.getInt(1);
+                return transaksiBulanan;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
 }

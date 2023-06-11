@@ -17,6 +17,7 @@
           </grid>
         </constraints>
         <properties>
+          <editable value="false"/>
           <font name="Consolas" size="14" style="1"/>
         </properties>
       </component>

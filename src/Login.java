@@ -39,11 +39,9 @@ public class Login extends JFrame{
                 try {
                     if (Conn.isUserCanLogin(usernameUser, passwordUser) && comboBoxTipe.getSelectedIndex() == 0) {
                         redirectToHomePageEmployee();
-//                        System.out.println("Sukses login sebagai pegawai");
                     } else if (Conn.isOwnerCanLogin(usernameUser, passwordUser) && comboBoxTipe.getSelectedIndex() == 1) {
                         redirectToHomePageOwner();
-//                        System.out.println("Sukses login sebagai owner");
-                    } else {
+                     } else {
                         JOptionPane.showMessageDialog(null, "Password/username salah!");
                         usernameInput.setText("");
                         passwordInput.setText("");

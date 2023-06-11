@@ -32,7 +32,7 @@
         </constraints>
         <properties>
           <font name="Poppins SemiBold" size="14" style="1"/>
-          <text value="5 Customer dengan Transaksi Terbesar"/>
+          <text value="5 Transaksi Terbesar 1 Minggu Terakhir"/>
         </properties>
       </component>
       <component id="8d19b" class="javax.swing.JTable" binding="tableTransaksiTerbesar">

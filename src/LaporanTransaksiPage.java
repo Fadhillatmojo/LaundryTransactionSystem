@@ -26,5 +26,13 @@ public class LaporanTransaksiPage extends JFrame {
 
         // set size untuk window
         setSize(800,600);
+
+        // panggil method transaksimingguan
+        int transaksiMingguan = Conn.totalPemasukanMingguan();
+        fieldTotalPenjualanMinggu.setText("Rp " + String.valueOf(transaksiMingguan));
+
+        // panggil method transaksiBulanan
+        int transaksiBulanan = Conn.totalPemasukanBulanan();
+        fieldTotalPenjualanBulan.setText("Rp " + String.valueOf(transaksiBulanan));
     }
 }

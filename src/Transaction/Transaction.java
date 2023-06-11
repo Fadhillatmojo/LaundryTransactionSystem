@@ -1,6 +1,9 @@
 package Transaction;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.print.PrinterException;
 
 public abstract class Transaction extends JFrame {
 
@@ -18,6 +21,16 @@ public abstract class Transaction extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
+        buttonPrint.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    areaReceipt.print();
+                } catch (PrinterException ex) {
+                    System.out.println("Gagal Print");
+                }
+            }
+        });
     }
 
     // method untuk transaksi
