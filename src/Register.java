@@ -12,6 +12,7 @@ public class Register extends JFrame{
     private JPasswordField passwordInput;
     private JButton btnRegisterKaryawan;
     private JPasswordField passwordInput2;
+    private JButton buttonBatal;
 
     // constructor
     public Register(String title){
@@ -41,6 +42,12 @@ public class Register extends JFrame{
         });
 
         setVisible(true);
+        buttonBatal.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                redirectToLoginPage();
+            }
+        });
     }
 
     // method

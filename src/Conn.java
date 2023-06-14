@@ -11,6 +11,8 @@ import java.text.SimpleDateFormat;
 
 public class Conn {
     static Connection con;
+
+    // ini method untuk get connection
     public static  Connection getCon(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -22,34 +24,11 @@ public class Conn {
         return con;
     }
 
-    // select user
-    public static void getUser(){
-        try {
+    // ini section login
 
-            Statement perintah = getCon().createStatement();
-            String query = "SELECT * FROM employee";
-            ResultSet hasilSet = perintah.executeQuery(query);
-
-            // rsult set
-            while (hasilSet.next()){
-                int idUser = hasilSet.getInt("id_user");
-                String username = hasilSet.getString("username");
-                String password = hasilSet.getString("password");
-
-                //
-                System.out.println("Id:" + idUser + " username:" + username + " password:" + password);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    // method boolean untuk mengambil data user
+    // method boolean untuk mengambil data employee, apakah user employee dapat login?
     public static boolean isUserCanLogin(String usn, String pass){
         try {
-//            Statement perintah = getCon().createStatement();
-//            String query = "SELECT username,password FROM employee WHERE username = ? AND password = ?";
-//            ResultSet hasilSet = perintah.executeQuery(query);
             // result set
             PreparedStatement statement = getCon().prepareStatement("SELECT username,password FROM employee WHERE username = ? AND password = ?");
             statement.setString(1, usn);
@@ -67,6 +46,8 @@ public class Conn {
         return false;
 
     }
+
+    // method boolean untuk mengambil data owner, apakah owner dapat login?
     public static boolean isOwnerCanLogin(String usn, String pass){
         try {
             // result set
@@ -85,6 +66,9 @@ public class Conn {
         return false;
     }
 
+
+    // ini section register
+
     // method untuk register akun baru
     public static void registerKaryawan(String usn, String pass){
         try {
@@ -98,15 +82,14 @@ public class Conn {
                 ResultSet hasilSet = statement.getGeneratedKeys();
                 if (hasilSet.next()) {
                     int userId = hasilSet.getInt(1);
-                    System.out.println("berhasil regist, user id: " + userId);
                 }
             }
-
         } catch (SQLException e){
             e.printStackTrace();
-
         }
     }
+
+    // ini section addtransactionpage
 
     // method untuk menambahkan transaksi ke database
     public static int tambahTransaksi(String namaCustomer, String tanggal, String jenis, int berat, int jmlJas, int dalaman, int jmlSprei, int jmlBedCover, int diskon, String status){
@@ -148,6 +131,8 @@ public class Conn {
         return -1;
     }
 
+    // ini section lihat transaksi page
+
     // method untuk load table
     public static void loadTable(JTable table){
         try {
@@ -158,6 +143,8 @@ public class Conn {
             e.printStackTrace();
         }
     }
+
+    // ini section update transaction page
 
     // method untuk update data
     public static void updateData(JTable table, String customerName, String jenis, int berat, int jumlahJas, int jumlahDalaman, int jumlahSprei, int jumlahBedCover, String status, int idTransaksi){
@@ -175,6 +162,19 @@ public class Conn {
 
             statement.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data diperbarui!");
+            Conn.loadTable(table);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // method untuk delete data
+    public static void deleteData(JTable table, int idtransaction){
+        try{
+            PreparedStatement statement = getCon().prepareStatement("DELETE FROM laundrytransaction WHERE idtransaction = ?");
+            statement.setInt(1, idtransaction);
+            statement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data Dihapus!");
             Conn.loadTable(table);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -203,6 +203,8 @@ public class Conn {
             e.printStackTrace();
         }
     }
+
+    // ini section laporan transaksi page
 
     // method mengambil jumlah transaksi 1 minggu terakhir
     public static int totalPemasukanMingguan(){
@@ -234,6 +236,30 @@ public class Conn {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    // method untuk tampilkan 5 transaksi terbesar 1 minggu terakhir
+    public static void biggestTransaction(JTable table){
+        String storedProcedure = "{ CALL limaTransaksiTerbesarMingguan() }";
+        try {
+            PreparedStatement statement = getCon().prepareCall(storedProcedure);
+            ResultSet hasilSet = statement.executeQuery();
+            table.setModel(DbUtils.resultSetToTableModel(hasilSet));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // method untuk tampilkan setiap total transaksi setiap jenis perminggu
+    public static void transactionBasedfromJenis(JTable table){
+        String storedProcedure = "{ CALL totalHargaTransaksiSetiapJenis() }";
+        try {
+            PreparedStatement statement = getCon().prepareCall(storedProcedure);
+            ResultSet hasilSet = statement.executeQuery();
+            table.setModel(DbUtils.resultSetToTableModel(hasilSet));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

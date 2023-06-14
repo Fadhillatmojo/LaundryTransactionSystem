@@ -13,7 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UpdateTransaksiPage extends JFrame{
+public class UpdateTransaksiPage extends JFrame implements ButtonBatal{
     private JTable tableUpdateTransaksi;
     private JScrollPane scrollPaneLihatTransaksi;
     private JPanel mainPanel;
@@ -31,6 +31,7 @@ public class UpdateTransaksiPage extends JFrame{
     private JButton buttonBatal;
     private JComboBox comboBoxStatus;
     private JTextField fieldId;
+    private JButton buttonDelete;
 
     private TableModel loadTable;
 
@@ -82,35 +83,62 @@ public class UpdateTransaksiPage extends JFrame{
         buttonUpdate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int idTransaksi = Integer.parseInt(fieldId.getText());
-                String nama = fieldNama.getText();
-                int beratLaundry = Integer.parseInt(fieldBerat.getText());
-                int jmlJas = Integer.parseInt(fieldJas.getText());
-                int jmlDalaman = Integer.parseInt(fieldDalaman.getText());
-                int jmlSprei = Integer.parseInt(fieldSprei.getText());
-                int jmlBedCover = Integer.parseInt(fieldBedCover.getText());
-                String status = (String) comboBoxStatus.getSelectedItem();
-                String jenis = (String) comboBoxJenis.getSelectedItem();
+                try{
+                    int idTransaksi = Integer.parseInt(fieldId.getText());
+                    String nama = fieldNama.getText();
+                    int beratLaundry = Integer.parseInt(fieldBerat.getText());
+                    int jmlJas = Integer.parseInt(fieldJas.getText());
+                    int jmlDalaman = Integer.parseInt(fieldDalaman.getText());
+                    int jmlSprei = Integer.parseInt(fieldSprei.getText());
+                    int jmlBedCover = Integer.parseInt(fieldBedCover.getText());
+                    String status = (String) comboBoxStatus.getSelectedItem();
+                    String jenis = (String) comboBoxJenis.getSelectedItem();
 
-                Conn.updateData(tableUpdateTransaksi, nama, jenis, beratLaundry, jmlJas, jmlDalaman, jmlSprei, jmlBedCover, status, idTransaksi);
+                    Conn.updateData(tableUpdateTransaksi, nama, jenis, beratLaundry, jmlJas, jmlDalaman, jmlSprei, jmlBedCover, status, idTransaksi);
 
-                // kosongkan field setelah mengupdate data
-                fieldId.setText("");
-                fieldNama.setText("");
-                fieldBerat.setText("");
-                fieldJas.setText("");
-                fieldDalaman.setText("");
-                fieldBedCover.setText("");
-                fieldSprei.setText("");
-                comboBoxJenis.setSelectedItem("BIASA");
-                comboBoxStatus.setSelectedItem("UNPAID");
+                    // kosongkan field setelah mengupdate data
+                    fieldId.setText("");
+                    fieldNama.setText("");
+                    fieldBerat.setText("");
+                    fieldJas.setText("");
+                    fieldDalaman.setText("");
+                    fieldBedCover.setText("");
+                    fieldSprei.setText("");
+                    comboBoxJenis.setSelectedItem("BIASA");
+                    comboBoxStatus.setSelectedItem("UNPAID");
+                } catch (Exception ex){
+                    JOptionPane.showMessageDialog(null, "Tolong pilih data yang benar!");
+                }
 
             }
         });
         buttonBatal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
+                batal();
+            }
+        });
+        buttonDelete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+                    int idTransaksi = Integer.parseInt(fieldId.getText());
+                    Conn.deleteData(tableUpdateTransaksi, idTransaksi);
+
+                    // kosongkan field setelah hapus data
+                    fieldId.setText("");
+                    fieldNama.setText("");
+                    fieldBerat.setText("");
+                    fieldJas.setText("");
+                    fieldDalaman.setText("");
+                    fieldBedCover.setText("");
+                    fieldSprei.setText("");
+                    comboBoxJenis.setSelectedItem("BIASA");
+                    comboBoxStatus.setSelectedItem("UNPAID");
+                } catch (Exception ex){
+                    JOptionPane.showMessageDialog(null, "Tolong pilih data yang benar!");
+                }
+
             }
         });
     }
@@ -123,6 +151,8 @@ public class UpdateTransaksiPage extends JFrame{
         }
     }
 
+    // ini method untuk mengupdate fields, jadi ketika suatu data pada table itu di klik, maka fields nya akan ikut berubah, misal field nama, akan menjadi nama sesuai
+    // dengan data yang user klik
     private void updateFieldsFromTable(int row){
         DefaultTableModel model = (DefaultTableModel) tableUpdateTransaksi.getModel();
         int idTransaksi = Integer.parseInt(model.getValueAt(row, 0).toString());
@@ -174,5 +204,8 @@ public class UpdateTransaksiPage extends JFrame{
 
     }
 
-
+    @Override
+    public void batal() {
+        dispose();
+    }
 }

@@ -12,7 +12,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class AddTransactionPage extends JFrame{
+public class AddTransactionPage extends JFrame implements ButtonBatal{
     private JPanel mainPanelTransaction;
     private JLabel labelTitle;
     private JTextField fieldNamaCustomer;
@@ -156,7 +156,7 @@ public class AddTransactionPage extends JFrame{
         buttonCancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
+                batal();
             }
         });
     }
@@ -173,4 +173,13 @@ public class AddTransactionPage extends JFrame{
         return "";
     }
 
+    @Override
+    public void batal() {
+        int confirmed = JOptionPane.showConfirmDialog(null,
+                "Apakah yakin ingin menutup tambah transaksi?", "Confirm Exit",
+                JOptionPane.YES_NO_OPTION);
+        if (confirmed == JOptionPane.YES_OPTION) {
+            dispose();
+        }
+    }
 }

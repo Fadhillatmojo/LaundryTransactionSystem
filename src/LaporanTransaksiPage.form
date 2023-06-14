@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="LaporanTransaksiPage">
-  <grid id="27dc6" binding="laporanTransaksiPage" layout-manager="GridLayoutManager" row-count="12" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="laporanTransaksiPage" layout-manager="GridLayoutManager" row-count="11" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="20" y="20" width="690" height="477"/>
     </constraints>
-    <properties/>
+    <properties>
+      <background color="-1"/>
+    </properties>
     <border type="none"/>
     <children>
       <component id="bef10" class="javax.swing.JLabel" binding="titleOwner">
@@ -14,6 +16,7 @@
         </constraints>
         <properties>
           <font name="Poppins SemiBold" size="18" style="1"/>
+          <foreground color="-15849132"/>
           <text value="Laporan Transaksi"/>
         </properties>
       </component>
@@ -23,6 +26,7 @@
         </constraints>
         <properties>
           <font name="Poppins SemiBold" size="14" style="1"/>
+          <foreground color="-15849132"/>
           <text value="Total Penjualan Satu Minggu Terakhir"/>
         </properties>
       </component>
@@ -31,17 +35,11 @@
           <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-7564908"/>
           <font name="Poppins SemiBold" size="14" style="1"/>
+          <foreground color="-15849132"/>
           <text value="5 Transaksi Terbesar 1 Minggu Terakhir"/>
         </properties>
-      </component>
-      <component id="8d19b" class="javax.swing.JTable" binding="tableTransaksiTerbesar">
-        <constraints>
-          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="50"/>
-          </grid>
-        </constraints>
-        <properties/>
       </component>
       <component id="f6fae" class="javax.swing.JTextField" binding="fieldTotalPenjualanMinggu">
         <constraints>
@@ -59,6 +57,7 @@
         </constraints>
         <properties>
           <font name="Poppins SemiBold" size="14" style="1"/>
+          <foreground color="-15849132"/>
           <text value="Total Penjualan Satu Bulan Terakhir"/>
         </properties>
       </component>
@@ -78,20 +77,13 @@
         </constraints>
         <properties>
           <font name="Poppins SemiBold" size="14" style="1"/>
-          <text value="Total Transaksi dari Masing-Masing Jenis Laundry"/>
+          <foreground color="-15849132"/>
+          <text value="Total Transaksi dari Masing-Masing Jenis Laundry (1 Minggu Terkhir)"/>
         </properties>
-      </component>
-      <component id="202b2" class="javax.swing.JTable" binding="tableLaporanTransaksiJenis">
-        <constraints>
-          <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="50"/>
-          </grid>
-        </constraints>
-        <properties/>
       </component>
       <component id="5a8d9" class="javax.swing.JToolBar$Separator">
         <constraints>
-          <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
       </component>
@@ -113,15 +105,42 @@
         </constraints>
         <properties/>
       </component>
-      <component id="391bd" class="javax.swing.JButton" binding="cetakLaporanButton" default-binding="true">
+      <scrollpane id="8dcd2">
         <constraints>
-          <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties>
-          <font name="Poppins SemiBold" size="14" style="1"/>
-          <text value="Cetak Laporan"/>
-        </properties>
-      </component>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="8d19b" class="javax.swing.JTable" binding="tableTransaksiTerbesar">
+            <constraints/>
+            <properties>
+              <background color="-2695967"/>
+              <font size="14"/>
+              <foreground color="-15849132"/>
+              <gridColor color="-15849132"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+      <scrollpane id="5c4f7">
+        <constraints>
+          <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="202b2" class="javax.swing.JTable" binding="tableLaporanTransaksiJenis">
+            <constraints/>
+            <properties>
+              <background color="-2695967"/>
+              <font size="14"/>
+              <foreground color="-15849132"/>
+              <gridColor color="-15849132"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
     </children>
   </grid>
 </form>

@@ -1,4 +1,8 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableColumnModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 public class LaporanTransaksiPage extends JFrame {
     private JPanel laporanTransaksiPage;
@@ -7,7 +11,6 @@ public class LaporanTransaksiPage extends JFrame {
     private JTextField fieldTotalPenjualanMinggu;
     private JTextField fieldTotalPenjualanBulan;
     private JTable tableLaporanTransaksiJenis;
-    private JButton cetakLaporanButton;
 
     public LaporanTransaksiPage(String title){
         super(title);
@@ -34,5 +37,12 @@ public class LaporanTransaksiPage extends JFrame {
         // panggil method transaksiBulanan
         int transaksiBulanan = Conn.totalPemasukanBulanan();
         fieldTotalPenjualanBulan.setText("Rp " + String.valueOf(transaksiBulanan));
+
+        // isi dalam tabel 5 buah transaksi terbesar
+        Conn.biggestTransaction(tableTransaksiTerbesar);
+
+        // isi dalam tabel laporan transaksi perjenis
+        Conn.transactionBasedfromJenis(tableLaporanTransaksiJenis);
+
     }
 }

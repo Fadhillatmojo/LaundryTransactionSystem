@@ -36,7 +36,7 @@ public class LihatTransaksiPage extends JFrame{
         Conn.loadTable(tableLihatTransaksi);
 
         // set text default
-        fieldCari.setText("Cari Nama");
+        fieldCari.setText("Cari Nama/id/berat/jumlah laundry");
 
         buttoncari.addActionListener(new ActionListener() {
             @Override

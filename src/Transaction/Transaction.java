@@ -17,7 +17,7 @@ public abstract class Transaction extends JFrame {
         super(title);
         setContentPane(mainPanelTransaction);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(400,650);
+        setSize(400,700);
         setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);

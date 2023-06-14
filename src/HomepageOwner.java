@@ -51,12 +51,6 @@ public class HomepageOwner extends JFrame{
             }
 
         });
-        buttonLihatTransaksi.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("semua transaksi button tertekan");
-            }
-        });
         buttonDaftarHarga.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
