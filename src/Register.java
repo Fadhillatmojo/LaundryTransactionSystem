@@ -26,7 +26,7 @@ public class Register extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 char[] passwordUserChar = passwordInput.getPassword();
-                char[] passwordUserChar2 = passwordInput.getPassword();
+                char[] passwordUserChar2 = passwordInput2.getPassword();
                 String usernameUser = new String(usernameInput.getText());
                 String passwordUser = new String(passwordUserChar);
                 String passwordUser2 = new String(passwordUserChar2);
