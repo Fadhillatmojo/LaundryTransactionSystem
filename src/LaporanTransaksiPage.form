@@ -78,7 +78,7 @@
         <properties>
           <font name="Poppins SemiBold" size="14" style="1"/>
           <foreground color="-15849132"/>
-          <text value="Total Transaksi dari Masing-Masing Jenis Laundry (1 Minggu Terkhir)"/>
+          <text value="Total Transaksi dari Masing-Masing Jenis Laundry (1 Minggu Terakhir)"/>
         </properties>
       </component>
       <component id="5a8d9" class="javax.swing.JToolBar$Separator">

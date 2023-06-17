@@ -33,7 +33,6 @@ public class Login extends JFrame{
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 char[] passwordUserChar = passwordInput.getPassword();
                 String passwordUser = new String(passwordUserChar);
                 String usernameUser = new String(usernameInput.getText());

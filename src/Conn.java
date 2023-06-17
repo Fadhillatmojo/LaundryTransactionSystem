@@ -116,8 +116,7 @@ public class Conn {
                 ResultSet hasilSet = statement.getGeneratedKeys();
                 if (hasilSet.next()) {
                     int transactionId = hasilSet.getInt(1);
-                    System.out.println("berhasil add transaksi, id customer" + ", " + transactionId);
-//                    getTransactionId(transactionId);
+//                    System.out.println("berhasil add transaksi, id customer" + ", " + transactionId);
                     return transactionId;
                 }
             }
@@ -137,6 +136,26 @@ public class Conn {
     public static void loadTable(JTable table){
         try {
             PreparedStatement statement = getCon().prepareStatement("SELECT * FROM laundrytransaction");
+            ResultSet hasilSet = statement.executeQuery();
+            table.setModel(DbUtils.resultSetToTableModel(hasilSet));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void loadTablebyID(JTable table, String keyword){
+        try {
+            PreparedStatement statement = getCon().prepareStatement("SELECT * FROM laundrytransaction WHERE laundrytransaction.customername LIKE ? OR " +
+                    "laundrytransaction.idtransaction LIKE ? OR " +
+                    "laundrytransaction.tanggal LIKE ? OR " +
+                    "laundrytransaction.jenis LIKE ? OR " +
+                    "laundrytransaction.status LIKE ? " +
+                    "ORDER BY idtransaction ASC");
+            statement.setString(1, "%" + keyword + "%");
+            statement.setString(2, "%" + keyword + "%");
+            statement.setString(3, "%" + keyword + "%");
+            statement.setString(4, "%" + keyword + "%");
+            statement.setString(5, "%" + keyword + "%");
             ResultSet hasilSet = statement.executeQuery();
             table.setModel(DbUtils.resultSetToTableModel(hasilSet));
         } catch (SQLException e) {
@@ -180,12 +199,31 @@ public class Conn {
             e.printStackTrace();
         }
     }
+    public static void deleteEmployee(JTable table, int idEmployee){
+        try{
+            PreparedStatement statement = getCon().prepareStatement("DELETE FROM employee WHERE id_user = ?");
+            statement.setInt(1, idEmployee);
+            statement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Karyawan Dihapus!");
+            Conn.loadTableEmployee(table);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     // search table
-    public static void searchData(JTable table, String customername){
+    public static void searchData(JTable table, String keyword){
         try {
-            PreparedStatement statement = getCon().prepareStatement("SELECT * FROM laundrytransaction WHERE laundrytransaction.customername LIKE ?");
-            statement.setString(1, "%" + customername + "%");
+            PreparedStatement statement = getCon().prepareStatement("SELECT * FROM laundrytransaction WHERE laundrytransaction.customername LIKE ? OR " +
+                    "laundrytransaction.idtransaction LIKE ? OR " +
+                    "laundrytransaction.tanggal LIKE ? OR " +
+                    "laundrytransaction.jenis LIKE ? OR " +
+                    "laundrytransaction.status LIKE ?");
+            statement.setString(1, "%" + keyword + "%");
+            statement.setString(2, "%" + keyword + "%");
+            statement.setString(3, "%" + keyword + "%");
+            statement.setString(4, "%" + keyword + "%");
+            statement.setString(5, "%" + keyword + "%");
             ResultSet hasilSet = statement.executeQuery();
             table.setModel(DbUtils.resultSetToTableModel(hasilSet));
         } catch (SQLException e) {
@@ -193,10 +231,47 @@ public class Conn {
         }
     }
 
-    // method urutkan berdasarkanTanggal
-    public static void sortTableByDate(JTable table){
+    // search table employee
+    public static void searchEmployee(JTable table, String keyword){
         try {
-            PreparedStatement statement = getCon().prepareStatement("SELECT * FROM laundrytransaction ORDER BY tanggal DESC");
+            PreparedStatement statement = getCon().prepareStatement("SELECT * FROM employee WHERE " +
+                    "employee.id_user LIKE ? OR " +
+                    "employee.username LIKE ?");
+            statement.setString(1, "%" + keyword + "%");
+            statement.setString(2, "%" + keyword + "%");
+            ResultSet hasilSet = statement.executeQuery();
+            table.setModel(DbUtils.resultSetToTableModel(hasilSet));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void loadTableEmployee(JTable table){
+        try {
+            PreparedStatement statement = getCon().prepareStatement("SELECT * FROM employee");
+            ResultSet hasilSet = statement.executeQuery();
+            table.setModel(DbUtils.resultSetToTableModel(hasilSet));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    // method urutkan berdasarkanTanggal
+    public static void sortTableByDate(JTable table, String keyword){
+        try {
+            PreparedStatement statement = getCon().prepareStatement("SELECT * FROM laundrytransaction WHERE laundrytransaction.customername LIKE ? OR " +
+                    "laundrytransaction.idtransaction LIKE ? OR " +
+                    "laundrytransaction.tanggal LIKE ? OR " +
+                    "laundrytransaction.jenis LIKE ? OR " +
+                    "laundrytransaction.status LIKE ? " +
+                    "ORDER BY laundrytransaction.tanggal DESC");
+            statement.setString(1, "%" + keyword + "%");
+            statement.setString(2, "%" + keyword + "%");
+            statement.setString(3, "%" + keyword + "%");
+            statement.setString(4, "%" + keyword + "%");
+            statement.setString(5, "%" + keyword + "%");
             ResultSet hasilSet = statement.executeQuery();
             table.setModel(DbUtils.resultSetToTableModel(hasilSet));
         } catch (SQLException e) {

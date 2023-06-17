@@ -57,7 +57,7 @@ public class UpdateTransaksiPage extends JFrame implements ButtonBatal{
         Conn.loadTable(tableUpdateTransaksi);
 
         // set text default
-        fieldCari.setText("Cari Nama");
+        fieldCari.setText("Cari Nama/id/berat/status transaksi");
 
 
         buttoncari.addActionListener(new ActionListener() {

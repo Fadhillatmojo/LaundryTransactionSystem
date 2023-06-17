@@ -78,7 +78,16 @@ public class AddTransactionPage extends JFrame implements ButtonBatal{
                         String jenis = getJenis();
                         int idTransaction = Conn.tambahTransaksi(fieldNamaCustomer.getText(), fieldTanggal.getText(), jenis, beratLaundry, jmlJas, jmlDalaman, jmlSprei, jmlBedCover, jmlDiskon, status);
                         TransactionBiasa transactionBiasa = new TransactionBiasa("Transaksi Laundry Biasa", fieldNamaCustomer.getText(), fieldTanggal.getText(), "Laundry " + jenis + " (3 Hari)", beratLaundry, jmlJas, jmlDalaman, jmlSprei, jmlBedCover, jmlDiskon, status, idTransaction);
-
+                        // untuk mengosongkan field setelah karyawan klik button tambah transaksi
+                        fieldNamaCustomer.setText("");
+                        fieldTanggal.setText("");
+                        fieldBerat.setText("0");
+                        fieldDiskon.setText("0");
+                        jumlahSprei.setText("0");
+                        jumlahBedCover.setText("0");
+                        jumlahDalaman.setText("0");
+                        jumlahJas.setText("0");
+                        labelHargaTotal.setText("Rp 0");
                     } else if (comboBoxJenis.getSelectedIndex() == 1 && !fieldNamaCustomer.getText().isEmpty()) {
                         int beratLaundry = Integer.parseInt(fieldBerat.getText());
                         int jmlJas = Integer.parseInt(jumlahJas.getText());
@@ -90,6 +99,16 @@ public class AddTransactionPage extends JFrame implements ButtonBatal{
                         String jenis = getJenis();
                         int idTransaction = Conn.tambahTransaksi(fieldNamaCustomer.getText(), fieldTanggal.getText(), jenis, beratLaundry, jmlJas, jmlDalaman, jmlSprei, jmlBedCover, jmlDiskon, status);
                         TransactionKilat transactionKilat = new TransactionKilat("Transaksi Laundry Kilat", fieldNamaCustomer.getText(), fieldTanggal.getText(), "Laundry "+ jenis +" (12 jam)", beratLaundry, jmlJas, jmlDalaman, jmlSprei, jmlBedCover, jmlDiskon, status, idTransaction);
+                        // untuk mengosongkan field setelah karyawan klik button tambah transaksi
+                        fieldNamaCustomer.setText("");
+                        fieldTanggal.setText("");
+                        fieldBerat.setText("0");
+                        fieldDiskon.setText("0");
+                        jumlahSprei.setText("0");
+                        jumlahBedCover.setText("0");
+                        jumlahDalaman.setText("0");
+                        jumlahJas.setText("0");
+                        labelHargaTotal.setText("Rp 0");
                     } else if (comboBoxJenis.getSelectedIndex() == 2 && !fieldNamaCustomer.getText().isEmpty()){
                         int beratLaundry = Integer.parseInt(fieldBerat.getText());
                         int jmlJas = Integer.parseInt(jumlahJas.getText());
@@ -102,6 +121,16 @@ public class AddTransactionPage extends JFrame implements ButtonBatal{
                         int idTransaction = Conn.tambahTransaksi(fieldNamaCustomer.getText(), fieldTanggal.getText(), jenis, beratLaundry, jmlJas, jmlDalaman, jmlSprei, jmlBedCover, jmlDiskon, status);
                         TransactionHanyaSetrika transactionHanyaSetrika = new TransactionHanyaSetrika("Transaksi Laundry Hanya Setrika", fieldNamaCustomer.getText(), fieldTanggal.getText(), "Hanya " + jenis +" (1 hari)", beratLaundry, jmlJas, jmlDalaman, jmlSprei, jmlBedCover, jmlDiskon, status, idTransaction);
 
+                        // untuk mengosongkan field setelah karyawan klik button tambah transaksi
+                        fieldNamaCustomer.setText("");
+                        fieldTanggal.setText("");
+                        fieldBerat.setText("0");
+                        fieldDiskon.setText("0");
+                        jumlahSprei.setText("0");
+                        jumlahBedCover.setText("0");
+                        jumlahDalaman.setText("0");
+                        jumlahJas.setText("0");
+                        labelHargaTotal.setText("Rp 0");
                     } else {
                         JOptionPane.showMessageDialog(null, "Username Kosong!");
                     }

@@ -47,25 +47,21 @@ public class LihatTransaksiPage extends JFrame{
         buttonUrutkanBerdasarkanTanggal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Conn.sortTableByDate(tableLihatTransaksi);
+                Conn.sortTableByDate(tableLihatTransaksi, fieldCari.getText());
             }
         });
         buttonUrutkanBerdasarkanID.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Conn.loadTable(tableLihatTransaksi);
+                Conn.loadTablebyID(tableLihatTransaksi, fieldCari.getText());
             }
         });
     }
 
     private void searchTable(String keyword) {
-        TableRowSorter<TableModel> sorter = new TableRowSorter<>(tableLihatTransaksi.getModel());
-        tableLihatTransaksi.setRowSorter(sorter);
         if (!keyword.isEmpty()) {
-            RowFilter<TableModel, Object> rowFilter = RowFilter.regexFilter("(?i)" + keyword);
-            sorter.setRowFilter(rowFilter);
+            Conn.searchData(tableLihatTransaksi, keyword);
         } else {
-            sorter.setRowFilter(null);
             Conn.loadTable(tableLihatTransaksi);
         }
     }

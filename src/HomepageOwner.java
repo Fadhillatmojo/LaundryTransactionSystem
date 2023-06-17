@@ -12,6 +12,7 @@ public class HomepageOwner extends JFrame{
     private JButton buttonLaporanKeuangan;
     private JButton buttonDaftarHarga;
     private JButton buttonUpdateTransaksi;
+    private JButton buttonKelolaTransaksi;
 
     // constructor
     public HomepageOwner(String title){
@@ -69,6 +70,12 @@ public class HomepageOwner extends JFrame{
                 redirectToUpdateTransaksiPage();
             }
         });
+        buttonKelolaTransaksi.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                redirectToManageKaryawanPage();
+            }
+        });
     }
 
     // method
@@ -100,5 +107,10 @@ public class HomepageOwner extends JFrame{
     public void redirectToLaporanTransaksiPage(){
         // direct to laporan transaksi page
         LaporanTransaksiPage laporanTransaksiPage = new LaporanTransaksiPage("Laporan Transaksi");
+    }
+
+    public void redirectToManageKaryawanPage(){
+        // direct to laporan transaksi page
+        ManageKaryawan laporanTransaksiPage = new ManageKaryawan("Kelola Karyawan");
     }
 }
