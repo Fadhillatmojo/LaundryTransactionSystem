@@ -234,7 +234,7 @@ public class Conn {
     // search table employee
     public static void searchEmployee(JTable table, String keyword){
         try {
-            PreparedStatement statement = getCon().prepareStatement("SELECT * FROM employee WHERE " +
+            PreparedStatement statement = getCon().prepareStatement("SELECT id_user,username FROM employee WHERE " +
                     "employee.id_user LIKE ? OR " +
                     "employee.username LIKE ?");
             statement.setString(1, "%" + keyword + "%");
@@ -248,7 +248,7 @@ public class Conn {
 
     public static void loadTableEmployee(JTable table){
         try {
-            PreparedStatement statement = getCon().prepareStatement("SELECT * FROM employee");
+            PreparedStatement statement = getCon().prepareStatement("SELECT id_user,username FROM employee");
             ResultSet hasilSet = statement.executeQuery();
             table.setModel(DbUtils.resultSetToTableModel(hasilSet));
         } catch (SQLException e) {
