@@ -50,7 +50,6 @@ public class Login extends JFrame{
                     System.out.println("eror");
                 }
             }
-
         });
 
         btnRegisterKaryawan.addActionListener(new ActionListener() {
